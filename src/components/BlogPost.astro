@@ -1,0 +1,41 @@
+---
+const { url, title, createdDate } = Astro.props;
+---
+
+<li>
+    <a href={url}>
+        <span class="date">{createdDate.slice(0, 10)}</span>
+        <span class="title">{title}</span>
+    </a>
+</li>
+
+<style>
+    li {
+        margin-bottom: 20px;
+        font-family: Arial, sans-serif;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+
+    li a {
+        text-decoration: none;
+        color: #333;
+        display: block;
+    }
+
+    li a:hover {
+        color: #007acc;
+    }
+
+    li a span.date {
+        display: block;
+        color: #888;
+        font-size: 0.9em;
+        margin-bottom: 5px;
+    }
+
+    li a span.title {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+</style>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogPost from "../components/BlogPost.astro";
+const allPosts = Object.values(
+    import.meta.glob("./posts/*.md", { eager: true }),
+);
+const pageTitle = "Blog";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <ul>
+        {
+            allPosts
+                .sort((a: any, b: any) => {
+                    return a.frontmatter.createdDate > b.frontmatter.createdDate
+                        ? -1
+                        : 1;
+                })
+                .map((post: any) => (
+                    <BlogPost
+                        url={post.url}
+                        title={post.frontmatter.title}
+                        createdDate={post.frontmatter.createdDate}
+                    />
+                ))
+        }
+    </ul>
+</BaseLayout>
+
+<style>
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+</style>

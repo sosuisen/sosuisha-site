@@ -1,0 +1,14 @@
+---
+const { url, text, description, color } = Astro.props;
+---
+
+<li>
+    <a href={url}>{text}</a>
+    <p>{description}</p>
+</li>
+
+<style define:vars={{color}}>
+    li::marker {
+        color: var(--color);
+    }
+</style>

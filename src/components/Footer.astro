@@ -1,0 +1,25 @@
+---
+import Social from "./Social.astro";
+import Author from "./Author.astro";
+---
+
+<footer>
+    <Author />
+    <Social
+        rootUrl="https://github.com/"
+        userName="sosuisen"
+        platformName="GitHub"
+    />
+</footer>
+
+<style>
+    footer {
+        display: flex;
+        justify-content: flex-end; /* 子要素を右寄せ */
+        gap: 1rem;
+        margin-top: 2rem;
+        padding: 1rem;
+        background-color: transparent; /* 背景色をなくす */
+        border-top: 1px solid #ddd; /* 上端の境界線のみ */
+    }
+</style>

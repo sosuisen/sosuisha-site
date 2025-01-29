@@ -1,0 +1,72 @@
+html {
+    background-color: #e5e5e5;
+    font-family: -apple-system, Roboto, sans-serif, serif;
+}
+
+body {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+    padding: 0;
+    line-height: 1.5;
+    background-color: #ffffff;
+    color: #333;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+ul {
+    padding: 0rem 0.1rem 0rem 1.0rem;
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+ul ul {
+    font-size: 1.0rem;
+}
+
+ul ul ul {
+    font-size: 0.95rem;
+}
+
+ul ul ul ul {
+    font-size: 0.9rem;
+}
+
+ul ul ul ul ul {
+    font-size: 0.85rem;
+}
+
+
+/* 画面が狭いとき */
+
+h1 {
+    font-size: 1.6rem;
+    line-height: 1.4rem;
+    color: #444;
+    margin-bottom: 4rem;
+}
+
+main {
+    padding: 1rem;
+}
+
+/* 画面が広いとき */
+@media screen and (min-width: 636px) {
+
+    h1 {
+        font-size: 2.5rem;
+        line-height: 1.4rem;
+        color: #444;
+        margin-bottom: 4rem;
+    }
+
+    main {
+        padding: 2rem;
+    }
+}

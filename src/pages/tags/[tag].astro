@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogPost from "../../components/BlogPost.astro";
+
+// 動的ページの全てのルートを生成する関数
+export async function getStaticPaths() {
+    const allPosts = Object.values(
+        import.meta.glob("../posts/*.md", { eager: true }),
+    );
+    const uniqueTags = [
+        ...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat()),
+    ];
+    // この[tag].astroのスラグtagに対応する動的ルートとしては
+    // paramsで、tagプロパティの値に指定したものだけが生成される。
+    // Astro.propsで渡したい値はpropsに指定。
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post: any) =>
+            post.frontmatter.tags?.includes(tag),
+        );
+        return {
+            params: { tag },
+            props: { posts: filteredPosts },
+        };
+    });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout pageTitle={tag}>
+    <p>Posts tagged with {tag}</p>
+    <ul>
+        {
+            posts.sort((a: any, b: any) => {
+                    return a.frontmatter.createdDate > b.frontmatter.createdDate
+                        ? -1
+                        : 1;
+                }).
+                map((post: any) => (
+                <BlogPost url={post.url} title={post.frontmatter.title} createdDate={post.frontmatter.createdDate} />
+            ))
+        }
+    </ul>
+</BaseLayout>

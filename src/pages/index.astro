@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectLink from "../components/ProjectLink.astro";
+const projects = [
+  {
+    text: "GitDocumentDB",
+    url: "https://gitddb.com",
+    description: "Offline-first database that syncs with Git",
+    color: "#c0c0c0",
+  },
+  {
+    text: "Mindmap Generator",
+    url: "https://dev.to/sosuisen/mindmap-generator-how-to-draw-svg-based-graphs-with-ai-generated-text-and-images-using-the-agent-2po2",
+    description: "Mindmap generator using an agent approach",
+    color: "#c0c0c0",
+  },
+  {
+    text: "Petasti",
+    url: "https://scrapbox.io/petasti/",
+    description: "The sticky outliner",
+    color: "#009000",
+  },
+];
+const pageTitle = "疏水舎";
+const subTitle = "sosuisha";
+---
+
+<BaseLayout pageTitle={pageTitle} subTitle={subTitle}>
+  <img
+    src="/images/offline_capable_small.png"
+    alt="projects"
+    class="responsive-image"
+  />
+  <h2>Projects</h2>
+  <ul>
+    {
+      projects.map((project) => (
+        <ProjectLink
+          url={project.url}
+          text={project.text}
+          description={project.description}
+          color={project.color}
+        />
+      ))
+    }
+  </ul>
+</BaseLayout>
+
+<style>
+  /* レスポンシブ画像のスタイル */
+  .responsive-image {
+    width: 95%; /* 親要素の幅に応じて画像を拡大縮小 */
+    height: auto; /* アスペクト比を維持 */
+    max-width: 800px; /* 必要に応じて画像の最大幅を指定 */
+    display: block; /* 画像の下に余白を作らない */
+    margin: 0 auto; /* 中央揃え */
+  }
+  /* 画面が広いとき */
+  @media screen and (min-width: 636px) {
+    .responsive-image {
+      width: auto;
+      margin: 0 0;
+    }
+  }
+</style>
